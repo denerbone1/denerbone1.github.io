@@ -44,3 +44,11 @@ nav a {
 nav a:hover {
     border-bottom: 1px solid var(--accent);
 }
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        --bg: #121212;
+        --text: #e0e0e0;
+        --accent: #4a9eff; /* Более спокойный, строгий акцент */
+    }
+}
