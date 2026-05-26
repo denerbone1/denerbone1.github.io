@@ -1,67 +1,40 @@
-// Конфигурация
 const bg = document.getElementById('ascii-background');
-if (!bg) { console.error("Элемент #ascii-background не найден!"); }
+const charList = "アァカサタナハマヤャラワガザダバパイィキシチニヒミリヰギジヂビウゥクスツヌフムユュルグズブヅェエケセテネヘメレヱゲゼデベォオコソトノホモヨョロヲゴゾドボヴッン0123456789";
+const fontSize = 16;
+let columns = Math.floor(window.innerWidth / fontSize);
+let drops = Array(columns).fill(0);
 
-// Каноничные символы Матрицы (японские иероглифы + цифры + латиница)
-const charList = "アァカサタナハマヤャラワガザダバパイィキシチニヒミリヰギジヂビウゥクスツヌフムユュルグズブヅェエケセテネヘメレヱゲゼデベォオコソトノホモヨョロヲゴゾドボヴッン0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-const characters = charList.split('');
+function draw() {
+    bg.style.backgroundColor = 'rgba(13, 13, 13, 0.1)';
+    for (let i = 0; i < drops.length; i++) {
+        const char = charList[Math.floor(Math.random() * charList.length)];
+        const span = document.createElement('div');
+        span.style.position = 'absolute';
+        span.style.left = i * fontSize + 'px';
+        span.style.top = drops[i] * fontSize + 'px';
+        span.innerText = char;
+        bg.appendChild(span);
 
-// Создаем CSS-анимацию прямо в JS (если её нет в style.css)
-const style = document.createElement('style');
-style.innerHTML = `
-    @keyframes matrixFall {
-        from { top: -100vh; }
-        to { top: 100vh; }
+        if (bg.children.length > 500) bg.removeChild(bg.firstChild);
+
+        if (drops[i] * fontSize > window.innerHeight && Math.random() > 0.975) drops[i] = 0;
+        drops[i]++;
     }
-`;
-document.head.appendChild(style);
-
-function createColumn() {
-    if (!bg) return;
-
-    const column = document.createElement('div');
-    column.style.position = 'absolute';
-    column.style.left = Math.floor(Math.random() * 100) + 'vw';
-    column.style.animation = `matrixFall ${Math.random() * 10 + 10}s linear infinite`;
-    column.style.top = '-100vh';
-
-    // Рандомный шанс 0.5% на пасхалку
-    const isMarin = Math.random() < 0.005; 
-    let columnText = '';
-
-    if (isMarin) {
-        column.classList.add('marin-kitagawa');
-        columnText = "MARIN\nKITAGAWA\n".repeat(15);
-    } else {
-        for (let i = 0; i < 50; i++) {
-            columnText += characters[Math.floor(Math.random() * characters.length)] + '\n';
-        }
-    }
-    
-    column.innerText = columnText;
-    bg.appendChild(column);
-
-    setTimeout(() => { if (column.parentNode === bg) bg.removeChild(column); }, 25000);
-}
-// Запускаем создание колонок каждые 150 мс (быстрое заполнение)
-for (let i = 0; i < 100; i++) { // Сразу создаем 100 колонок
-    setTimeout(createColumn, i * 150); 
-}
-// И продолжаем добавлять по одной каждые 400мс
-setInterval(createColumn, 400); 
-
-// Обновляем статус (твой старый код)
-const statuses = [
-    "Compiling code...",
-    "Debugging reality...",
-    "System stable.",
-    "Watching the terminal...",
-    "Optimizing...",
-    "just playing cs2 :)",
-    "just enjoys life",
-];
-const statusElement = document.getElementById('status');
-if (statusElement) {
-    statusElement.innerText = statuses[Math.floor(Math.random() * statuses.length)];
 }
 
+// Консольная пасхалка
+window.marin = () => {
+    const el = document.createElement('div');
+    el.className = 'marin-kitagawa';
+    el.style.position = 'absolute';
+    el.style.top = '50%'; el.style.left = '50%';
+    el.style.transform = 'translate(-50%, -50%)';
+    el.style.fontSize = '40px';
+    el.style.zIndex = '100';
+    el.innerText = "MARIN KITAGAWA";
+    document.body.appendChild(el);
+    setTimeout(() => el.remove(), 3000);
+};
+
+setInterval(draw, 60);
+document.getElementById('status').innerText = "System stable. Enjoy life.";
