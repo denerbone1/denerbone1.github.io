@@ -11,24 +11,23 @@ const statuses = [
 document.getElementById('status').innerText = statuses[Math.floor(Math.random() * statuses.length)];
 
 const bg = document.getElementById('ascii-background');
-const characters = "01010101<>[]{}|/\\"; // Символы для фона
+const characters = "01010101<>[]{}|/\\"; 
 
 function createStream() {
+    if (!bg) return; // Защита: если элемента нет, код не упадет
     const stream = document.createElement('div');
     stream.style.position = 'absolute';
     stream.style.left = Math.random() * 100 + 'vw';
     stream.style.animation = `fall ${Math.random() * 5 + 5}s linear infinite`;
     bg.appendChild(stream);
 
-    // Генерируем 10 символов в колонку
     stream.innerText = Array(10).fill(0).map(() => characters[Math.floor(Math.random() * characters.length)]).join('\n');
-
-    setTimeout(() => stream.remove(), 10000); // Удаляем, чтобы не грузить память
+    setTimeout(() => stream.remove(), 10000);
 }
 
 setInterval(createStream, 500);
 
-// Добавим анимацию падения в CSS через JS (или просто в style.css)
+// CSS-инъекция для анимации
 const style = document.createElement('style');
 style.innerHTML = `
     @keyframes fall {
