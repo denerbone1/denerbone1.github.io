@@ -40,7 +40,7 @@ li a { color: #fff; text-decoration: underline; }
     height: 100%;
     z-index: -1;
     pointer-events: none;
-    color: #1a1a1a;
+    color: #11ff00;
     font-family: monospace;
     font-size: 12px;
     overflow: hidden;
