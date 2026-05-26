@@ -32,8 +32,11 @@ const style = document.createElement('style');
 style.innerHTML = `
     @keyframes fall {
         from { top: -200px; opacity: 0; }
-        50% { opacity: 0.3; }
+        50% { opacity: 0.5; }
         to { top: 100vh; opacity: 0; }
+    }
+    #ascii-background div {
+        text-shadow: 0 0 5px #00ff41;
     }
 `;
 document.head.appendChild(style);

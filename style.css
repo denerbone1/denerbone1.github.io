@@ -40,10 +40,11 @@ li a { color: #fff; text-decoration: underline; }
     height: 100%;
     z-index: -1;
     pointer-events: none;
-    color: #11ff00;
+    color: #00ff41; /* Классический зеленый цвет терминала */
     font-family: monospace;
-    font-size: 12px;
+    font-size: 14px;
     overflow: hidden;
     white-space: pre;
-    line-height: 1;
+    line-height: 1.2;
+    opacity: 0.2; /* Делаем полупрозрачными, чтобы не мешали читать */
 }
