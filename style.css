@@ -45,5 +45,5 @@ li a { color: #fff; text-decoration: underline; }
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     font-weight: bold;
-    text-shadow: none !important;
+    z-index: 100;
 }

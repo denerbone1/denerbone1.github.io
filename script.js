@@ -22,18 +22,33 @@ function draw() {
     }
 }
 
-// Консольная пасхалка
 window.marin = () => {
-    const el = document.createElement('div');
-    el.className = 'marin-kitagawa';
-    el.style.position = 'absolute';
-    el.style.top = '50%'; el.style.left = '50%';
-    el.style.transform = 'translate(-50%, -50%)';
-    el.style.fontSize = '40px';
-    el.style.zIndex = '100';
-    el.innerText = "MARIN KITAGAWA";
-    document.body.appendChild(el);
-    setTimeout(() => el.remove(), 3000);
+    // Внедряем надпись в один из случайных столбцов
+    let targetCol = Math.floor(Math.random() * columns);
+    
+    // Превращаем текущую позицию этого столбца в "MARIN KITAGAWA"
+    // Мы просто подменяем символ в массиве или выводим его через draw
+    // Но проще: добавим специальный флаг для этого столбца
+    drops[targetCol] = -15; // Начинаем с верха (отрицательное число)
+    
+    // Создаем временную функцию, которая "рисует" Марин в этом столбце
+    const showMarin = (i, step) => {
+        const marinText = ["M", "A", "R", "I", "N", " ", "K", "I", "T", "A", "G", "A", "W", "A"];
+        if (step < marinText.length) {
+            // Внедряем букву в поток
+            const span = document.createElement('div');
+            span.className = 'marin-kitagawa';
+            span.style.position = 'absolute';
+            span.style.left = (i * fontSize) + 'px';
+            span.style.top = ((drops[i] + step) * fontSize) + 'px';
+            span.style.fontSize = fontSize + 'px';
+            span.innerText = marinText[step];
+            bg.appendChild(span);
+            
+            setTimeout(() => showMarin(i, step + 1), 100);
+        }
+    };
+    showMarin(targetCol, 0);
 };
 
 setInterval(draw, 60);
