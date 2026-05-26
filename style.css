@@ -40,11 +40,20 @@ li a { color: #fff; text-decoration: underline; }
     height: 100%;
     z-index: -1;
     pointer-events: none;
-    color: #00ff41; /* Классический зеленый цвет терминала */
+    color: #00ff41; /* Ярко-зелёный терминал */
     font-family: monospace;
-    font-size: 14px;
+    font-size: 20px; /* Увеличили размер для плотности */
     overflow: hidden;
     white-space: pre;
-    line-height: 1.2;
-    opacity: 0.2; /* Делаем полупрозрачными, чтобы не мешали читать */
+    line-height: 1; /* Плотные строки */
+    opacity: 1; /* Полная яркость */
+    text-shadow: 0 0 10px #00ff41; /* Яркое свечение */
+}
+
+.marin-kitagawa {
+    background: linear-gradient(to bottom, #ffe135, #ff69b4);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-weight: bold;
+    text-shadow: none !important; /* Убираем обычное зеленое свечение для неё */
 }
