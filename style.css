@@ -1,0 +1,46 @@
+/* style.css */
+:root {
+    --bg: #ffffff;
+    --text: #000000;
+    --accent: #ff0000; /* Тот самый акцентный цвет */
+}
+
+body {
+    background-color: var(--bg);
+    color: var(--text);
+    font-family: 'Courier New', Courier, monospace;
+    margin: 0;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+main {
+    text-align: left;
+    max-width: 600px;
+}
+
+h1 {
+    font-size: 2rem;
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+}
+
+#status {
+    font-size: 1rem;
+    color: #666;
+    margin-bottom: 2rem;
+}
+
+nav a {
+    color: var(--text);
+    text-decoration: none;
+    margin-right: 15px;
+    border-bottom: 1px solid transparent;
+    transition: 0.3s;
+}
+
+nav a:hover {
+    border-bottom: 1px solid var(--accent);
+}
