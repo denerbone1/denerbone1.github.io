@@ -3,7 +3,9 @@ const statuses = [
     "Debugging reality...",
     "System stable.",
     "Watching the terminal...",
-    "Optimizing..."
+    "Optimizing...",
+    "just playing cs2 :)",
+    "just enjoys life",
 ];
 
 document.getElementById('status').innerText = statuses[Math.floor(Math.random() * statuses.length)];
